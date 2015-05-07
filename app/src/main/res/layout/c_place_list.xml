@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.bearddev.cityguide.cells.PlaceListCell
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:padding="4dp"
+    >
+
+    <ImageView
+        android:id="@+id/c_pl_image"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:scaleType="centerCrop"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="8dp"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/c_pl_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            />
+
+        <TextView
+            android:id="@+id/c_pl_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:maxLength="200"
+            android:ellipsize="end"
+            />
+
+    </LinearLayout>
+
+</com.bearddev.cityguide.cells.PlaceListCell>
