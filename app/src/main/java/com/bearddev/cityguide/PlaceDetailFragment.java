@@ -33,8 +33,6 @@ public class PlaceDetailFragment extends Fragment
     @InjectView(R.id.f_pd_image_iv)
     ImageView imageView;
 
-    private Place place;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.f_place_details, container, false);
@@ -45,14 +43,15 @@ public class PlaceDetailFragment extends Fragment
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.inject(this, view);
 
-        Integer placeID = getArguments().getInt(PLACE_ID);
-        this.place = new PlaceRepository().getPlaceByID(placeID);
-
-        populateControlers();
+        Long placeID = getArguments().getLong(PLACE_ID);
+        Place place = new PlaceRepository().getPlaceByID(placeID);
+        populateControlersWithPlace(place);
     }
 
-    private void populateControlers() {
-
+    private void populateControlersWithPlace(Place place) {
+        titleTextView.setText(place.getName());
+        descriptionTextView.setText(place.getDescription());
+        // TODO: add image to model
     }
 
     // TODO:
@@ -61,6 +60,7 @@ public class PlaceDetailFragment extends Fragment
     // X Add one image about this place
     //
     // X argument -> id
+    // populate controls
     //
     // Add image url to model
     // Add image download

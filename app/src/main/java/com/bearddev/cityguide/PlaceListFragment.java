@@ -1,6 +1,8 @@
 package com.bearddev.cityguide;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,8 +64,15 @@ public class PlaceListFragment extends Fragment implements AdapterView.OnItemCli
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id)
     {
-        Place place = placeAdapter.getItem(position);
-        String toastText = place.getName();
-        Toast.makeText(getActivity(), toastText, Toast.LENGTH_SHORT).show();
+        PlaceDetailFragment placeDetailFragment = createPlaceFragmentWithID(id);
+        ((MainActivity) getActivity()).pushFragment(placeDetailFragment, "PLACE:DETAILS");
+    }
+
+    private PlaceDetailFragment createPlaceFragmentWithID(long id) {
+        PlaceDetailFragment placeDetailFragment = new PlaceDetailFragment();
+        Bundle bundle = new Bundle();
+        bundle.putLong(PlaceDetailFragment.PLACE_ID, id);
+        placeDetailFragment.setArguments(bundle);
+        return placeDetailFragment;
     }
 }
