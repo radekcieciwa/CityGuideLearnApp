@@ -5,7 +5,7 @@ package com.bearddev.cityguide.model;
  */
 public class Place
 {
-    private Integer id;
+    private Long id;
     private String name;
     private String description;
     private String type;
@@ -18,14 +18,14 @@ public class Place
         return description;
     }
 
-    public Place(Integer id, String name, String description, String type) {
+    public Place(Long id, String name, String description, String type) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.type = type;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 }
