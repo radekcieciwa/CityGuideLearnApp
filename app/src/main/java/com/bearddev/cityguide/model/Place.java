@@ -8,6 +8,7 @@ public class Place
     private Long id;
     private String name;
     private String description;
+    private String imageURL;
     private String type;
 
     public String getName() {
@@ -23,6 +24,11 @@ public class Place
         this.name = name;
         this.description = description;
         this.type = type;
+        this.imageURL = "http://direct.infinitylist.com/wordpress2/wp-content/uploads/2013/01/ONeill-Girls-Surf-Team-North-Shore-Hawaii.jpg";
+    }
+
+    public String getImageURL() {
+        return imageURL;
     }
 
     public Long getId() {
