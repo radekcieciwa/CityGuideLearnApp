@@ -24,9 +24,6 @@ public class PlaceListCell extends LinearLayout
     @InjectView(R.id.c_pl_title)
     TextView titleTV;
 
-    @InjectView(R.id.c_pl_description)
-    TextView descriptionTV;
-
     public PlaceListCell(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
@@ -43,9 +40,5 @@ public class PlaceListCell extends LinearLayout
 
     public TextView getTitleTV() {
         return titleTV;
-    }
-
-    public TextView getDescriptionTV() {
-        return descriptionTV;
     }
 }

@@ -31,11 +31,8 @@ public class PlaceAdapter<T extends Place> extends ArrayAdapter<T>
 
         Place place = getItem(position);
         String name = place.getName();
-        String description = place.getDescription();
-
         placeListCell.getTitleTV().setText(name);
-        placeListCell.getDescriptionTV().setText(description);
-        placeListCell.getImageIV().setImageResource(R.drawable.icon);
+        placeListCell.getImageIV().setImageResource(R.drawable.hawaii);
         return placeListCell;
     }
 
