@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.androidquery.AQuery;
 import com.bearddev.cityguide.model.Place;
 import com.bearddev.cityguide.repositories.PlaceRepository;
 
@@ -22,6 +23,8 @@ import butterknife.InjectView;
  */
 public class PlaceDetailFragment extends Fragment
 {
+//    TBD like: AirBnB
+// http://pttrns.com/applications/424
     public static final String PLACE_ID = "PLACE_ID";
 
     @InjectView(R.id.f_pd_title_tv)
@@ -29,9 +32,6 @@ public class PlaceDetailFragment extends Fragment
 
     @InjectView(R.id.f_pd_description_tv)
     TextView descriptionTextView;
-
-    @InjectView(R.id.f_pd_image_iv)
-    ImageView imageView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,18 +51,7 @@ public class PlaceDetailFragment extends Fragment
     private void populateControlersWithPlace(Place place) {
         titleTextView.setText(place.getName());
         descriptionTextView.setText(place.getDescription());
-        // TODO: add image to model
+        AQuery aQuery = new AQuery(getActivity());
+        aQuery.id(R.id.f_pd_image_iv).image(place.getImageURL());
     }
-
-    // TODO:
-    // X Add title
-    // X Add description
-    // X Add one image about this place
-    //
-    // X argument -> id
-    // populate controls
-    //
-    // Add image url to model
-    // Add image download
-    //
 }
