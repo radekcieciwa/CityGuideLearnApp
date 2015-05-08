@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="semi_transparent_bkg_for_title_text">#88000000</color>
+    <color name="title_text">#EEEEEE</color>
+
+</resources>

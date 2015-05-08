@@ -12,22 +12,38 @@
         android:layout_height="match_parent"
         >
 
-        <TextView
-            android:id="@+id/f_pd_title_tv"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="66dp"
-            />
+            android:layout_height="200dp"
+            >
+
+            <ImageView
+                android:id="@+id/f_pd_image_iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                />
+
+            <TextView
+                android:id="@+id/f_pd_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|left"
+                android:layout_marginBottom="@dimen/title_margin_from_bottom"
+                android:padding="@dimen/title_inside_text_padding"
+                android:textColor="@color/title_text"
+                android:textSize="@dimen/title_text_size"
+                android:background="@color/semi_transparent_bkg_for_title_text"
+                />
+        </FrameLayout>
 
         <TextView
             android:id="@+id/f_pd_description_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
-        
-        <ImageView
-            android:id="@+id/f_pd_image_iv"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:padding="@dimen/app_inside_text_preferable_padding"
+            android:textSize="@dimen/description_text_size"
             />
 
     </LinearLayout>
