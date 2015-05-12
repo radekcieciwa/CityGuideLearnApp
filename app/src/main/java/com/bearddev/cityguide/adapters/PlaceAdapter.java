@@ -9,10 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 
+import com.androidquery.AQuery;
+import com.androidquery.util.AQUtility;
 import com.bearddev.cityguide.R;
 import com.bearddev.cityguide.cells.PlaceListCell;
 import com.bearddev.cityguide.model.Place;
+import com.squareup.picasso.Picasso;
 
 public class PlaceAdapter<T extends Place> extends ArrayAdapter<T>
 {
@@ -32,7 +36,13 @@ public class PlaceAdapter<T extends Place> extends ArrayAdapter<T>
         Place place = getItem(position);
         String name = place.getName();
         placeListCell.getTitleTV().setText(name);
-        placeListCell.getImageIV().setImageResource(R.drawable.hawaii);
+        placeListCell.getDistanceTV().setText(place.getDistance() + "km");
+        placeListCell.getDescriptionTV().setText(place.getDescription());
+
+        String imageURL = place.getImageURL();
+        ImageView imageView = placeListCell.getImageIV();
+        Picasso.with(getContext()).load(imageURL).into(imageView);
+
         return placeListCell;
     }
 

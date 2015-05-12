@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.androidquery.util.AQUtility;
 import com.bearddev.cityguide.adapters.PlaceAdapter;
 import com.bearddev.cityguide.model.Place;
 import com.bearddev.cityguide.repositories.PlaceRepository;
@@ -36,7 +37,6 @@ public class PlaceListFragment extends Fragment implements AdapterView.OnItemCli
         super.onViewCreated(view, savedInstanceState);
 
         listView = (ListView) view.findViewById(R.id.f_pl_list_view);
-        
         setup();
         requestForData();
     }
@@ -52,11 +52,20 @@ public class PlaceListFragment extends Fragment implements AdapterView.OnItemCli
     }
 
     private void requestForData() {
-        requestForDummyData();
+        new PlaceRepository().getPlaces(new PlaceRepository.OnPlacesReturned() {
+            @Override
+            public void onCompletion(List<Place> places) {
+                refreshWithList(places);
+            }
+
+            @Override
+            public void onFailed(String reason) {
+                Toast.makeText(PlaceListFragment.this.getActivity(), reason, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
-    private void requestForDummyData() {
-        List<Place> placeList = new PlaceRepository().getPlaces();
+    private void refreshWithList(List<Place> placeList) {
         placeAdapter.addAll(placeList);
         placeAdapter.notifyDataSetChanged();
     }

@@ -10,24 +10,58 @@ import java.util.List;
  */
 public class PlaceRepository
 {
-    public List<Place> getPlaces()
+    public static interface OnPlacesReturned
+    {
+        public void onCompletion(List<Place> places);
+        public void onFailed(String reason);
+    }
+
+    private List<Place> createDummyPlaces()
     {
         List<Place> places = new ArrayList<Place>(10);
-        places.add(new Place(1l, "Wierzynek", "Pyszna polska restauracja", "Resto"));
-        places.add(new Place(2l, "Szwagier", "Pyszna polska restauracja", "Resto"));
-        places.add(new Place(3l, "Mac", "Pyszna polska restauracja", "Resto"));
-        places.add(new Place(4l, "KFC", "Pyszna polska restauracja", "Resto"));
-        places.add(new Place(5l, "Subway", "Pyszna polska restauracja", "Resto"));
-        places.add(new Place(6l, "Sukiennice", "Pyszna polska restauracja", "Resto"));
-        places.add(new Place(7l, "Grodza", "Pyszna polska restauracja", "Resto"));
-        places.add(new Place(8l, "Zapiekanki na placu nowy", "Pyszna polska restauracja", "Resto"));
-        places.add(new Place(9l, "Plac Inwalidow", "Pyszna polska restauracja", "Resto"));
-        places.add(new Place(10l, "Pradnik Czerwony", "Pyszna polska restauracja", "Resto"));
+        places.add(new Place(1l,
+                "Wierzynek",
+                "Pyszna polska restauracja",
+                "http://direct.infinitylist.com/wordpress2/wp-content/uploads/2013/01/ONeill-Girls-Surf-Team-North-Shore-Hawaii.jpg",
+                "Restaurant",
+                12.4
+        ));
 
+        places.add(new Place(2l,
+                "KFC",
+                "Fast food z kurczakami",
+                "http://upload.wikimedia.org/wikipedia/commons/6/6f/Ristorante_dell'agnolo.JPG",
+                "Fast-Food",
+                1.0
+        ));
+
+        places.add(new Place(3l,
+                "Zakladka",
+                "Francja elegancja",
+                "http://www.livignok.eu/Foto/Ristoranti/3/ristorante.jpg",
+                "Restaurant",
+                2.3
+        ));
         return places;
     }
 
-    public Place getPlaceByID(Long placeID) {
-        return new Place(10l, "Pradnik Czerwony", "Pyszna polska restauracja", "Resto");
+    public void getPlaces(OnPlacesReturned listener)
+    {
+        List<Place> places = createDummyPlaces();
+
+        if (listener != null) {
+            listener.onCompletion(places);
+        }
+    }
+
+    public Place getPlaceByID(Long placeID)
+    {
+        for (Place place : createDummyPlaces()) {
+            if (place.getId() == placeID) {
+                return place;
+            }
+        }
+
+        return null;
     }
 }

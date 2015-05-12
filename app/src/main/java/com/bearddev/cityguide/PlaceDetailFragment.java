@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.androidquery.AQuery;
 import com.bearddev.cityguide.model.Place;
 import com.bearddev.cityguide.repositories.PlaceRepository;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -23,9 +24,10 @@ import butterknife.InjectView;
  */
 public class PlaceDetailFragment extends Fragment
 {
-//    TBD like: AirBnB
-// http://pttrns.com/applications/424
     public static final String PLACE_ID = "PLACE_ID";
+
+    @InjectView(R.id.f_pd_image_iv)
+    ImageView detailsImageView;
 
     @InjectView(R.id.f_pd_title_tv)
     TextView titleTextView;
@@ -51,7 +53,7 @@ public class PlaceDetailFragment extends Fragment
     private void populateControlersWithPlace(Place place) {
         titleTextView.setText(place.getName());
         descriptionTextView.setText(place.getDescription());
-        AQuery aQuery = new AQuery(getActivity());
-        aQuery.id(R.id.f_pd_image_iv).image(place.getImageURL());
+
+        Picasso.with(getActivity()).load(place.getImageURL()).into(detailsImageView);
     }
 }
