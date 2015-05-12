@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,13 +17,19 @@ import butterknife.InjectView;
 /**
  * Created by radek on 29.04.15.
  */
-public class PlaceListCell extends LinearLayout
+public class PlaceListCell extends FrameLayout
 {
     @InjectView(R.id.c_pl_image)
     ImageView imageIV;
 
-    @InjectView(R.id.c_pl_title)
+    @InjectView(R.id.c_pl_title_tv)
     TextView titleTV;
+
+    @InjectView(R.id.c_pl_distance_tv)
+    TextView distanceTV;
+
+    @InjectView(R.id.c_pl_description_tv)
+    TextView descriptionTV;
 
     public PlaceListCell(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -40,5 +47,13 @@ public class PlaceListCell extends LinearLayout
 
     public TextView getTitleTV() {
         return titleTV;
+    }
+
+    public TextView getDistanceTV() {
+        return distanceTV;
+    }
+
+    public TextView getDescriptionTV() {
+        return descriptionTV;
     }
 }
