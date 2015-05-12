@@ -10,6 +10,7 @@ public class Place
     private String description;
     private String imageURL;
     private String type;
+    private Double distance;
 
     public String getName() {
         return name;
@@ -19,12 +20,13 @@ public class Place
         return description;
     }
 
-    public Place(Long id, String name, String description, String type) {
+    public Place(Long id, String name, String description, String imageURL, String type, Double distance) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.imageURL = imageURL;
         this.type = type;
-        this.imageURL = "http://direct.infinitylist.com/wordpress2/wp-content/uploads/2013/01/ONeill-Girls-Surf-Team-North-Shore-Hawaii.jpg";
+        this.distance = distance;
     }
 
     public String getImageURL() {
@@ -33,5 +35,9 @@ public class Place
 
     public Long getId() {
         return id;
+    }
+
+    public Double getDistance() {
+        return distance;
     }
 }
