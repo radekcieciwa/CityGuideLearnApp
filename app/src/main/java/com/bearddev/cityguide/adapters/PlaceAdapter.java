@@ -36,7 +36,7 @@ public class PlaceAdapter<T extends Place> extends ArrayAdapter<T>
         Place place = getItem(position);
         String name = place.getName();
         placeListCell.getTitleTV().setText(name);
-        placeListCell.getDistanceTV().setText(place.getDistance() + "km");
+        placeListCell.getDistanceTV().setText("- km");
         placeListCell.getDescriptionTV().setText(place.getDescription());
 
         String imageURL = place.getImageURL();
