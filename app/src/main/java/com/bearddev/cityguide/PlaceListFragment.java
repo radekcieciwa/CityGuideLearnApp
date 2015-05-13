@@ -1,8 +1,6 @@
 package com.bearddev.cityguide;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +9,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.androidquery.util.AQUtility;
 import com.bearddev.cityguide.adapters.PlaceAdapter;
+import com.bearddev.cityguide.interfaces.IPlaceRepository;
 import com.bearddev.cityguide.model.Place;
-import com.bearddev.cityguide.repositories.PlaceRepository;
+import com.bearddev.cityguide.model.repositories.DummyPlaceRepository;
 
 import java.util.List;
 
@@ -25,6 +23,7 @@ public class PlaceListFragment extends Fragment implements AdapterView.OnItemCli
 {
     protected ListView listView;
     private PlaceAdapter<Place> placeAdapter;
+    private IPlaceRepository placeRepository;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,7 +41,12 @@ public class PlaceListFragment extends Fragment implements AdapterView.OnItemCli
     }
 
     private void setup() {
+        setupRepository();
         setupListView();
+    }
+
+    private void setupRepository() {
+        placeRepository = new DummyPlaceRepository();
     }
 
     private void setupListView() {
@@ -52,7 +56,7 @@ public class PlaceListFragment extends Fragment implements AdapterView.OnItemCli
     }
 
     private void requestForData() {
-        new PlaceRepository().getPlaces(new PlaceRepository.OnPlacesReturned() {
+        placeRepository.getPlaces(new DummyPlaceRepository.OnPlacesReturned() {
             @Override
             public void onCompletion(List<Place> places) {
                 refreshWithList(places);

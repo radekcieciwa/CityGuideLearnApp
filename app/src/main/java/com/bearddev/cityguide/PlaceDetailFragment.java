@@ -2,19 +2,16 @@ package com.bearddev.cityguide;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.androidquery.AQuery;
+import com.bearddev.cityguide.interfaces.IPlaceRepository;
 import com.bearddev.cityguide.model.Place;
-import com.bearddev.cityguide.repositories.PlaceRepository;
+import com.bearddev.cityguide.model.repositories.DummyPlaceRepository;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -45,8 +42,9 @@ public class PlaceDetailFragment extends Fragment
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.inject(this, view);
 
+        IPlaceRepository placeRepository = new DummyPlaceRepository();
         Long placeID = getArguments().getLong(PLACE_ID);
-        Place place = new PlaceRepository().getPlaceByID(placeID);
+        Place place = placeRepository.getPlaceByID(placeID);
         populateControlersWithPlace(place);
     }
 
