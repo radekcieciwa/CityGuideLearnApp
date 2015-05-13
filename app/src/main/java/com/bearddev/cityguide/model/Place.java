@@ -1,16 +1,48 @@
 package com.bearddev.cityguide.model;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 /**
  * Created by radek on 29.04.15.
  */
+@DatabaseTable(tableName = "places")
 public class Place
 {
+    @DatabaseField(id = true)
     private Long id;
+
+    @DatabaseField(columnName = "name", canBeNull = false)
     private String name;
+
+    @DatabaseField(columnName = "description")
     private String description;
+
+    @DatabaseField(columnName = "image_url")
     private String imageURL;
-    private String type;
-    private Double distance;
+
+    @DatabaseField(columnName = "rating")
+    private Float rating; // <0,1>
+
+    @DatabaseField(columnName = "lat")
+    private Double latitude;
+
+    @DatabaseField(columnName = "lon")
+    private Double longitude;
+
+    public Place(Long id, String name, String description, String imageURL, Float rating, Double latitude, Double longitude) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.imageURL = imageURL;
+        this.rating = rating;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    public Long getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
@@ -20,24 +52,19 @@ public class Place
         return description;
     }
 
-    public Place(Long id, String name, String description, String imageURL, String type, Double distance) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.imageURL = imageURL;
-        this.type = type;
-        this.distance = distance;
-    }
-
     public String getImageURL() {
         return imageURL;
     }
 
-    public Long getId() {
-        return id;
+    public Float getRating() {
+        return rating;
     }
 
-    public Double getDistance() {
-        return distance;
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
     }
 }
