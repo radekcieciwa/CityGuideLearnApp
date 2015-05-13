@@ -9,6 +9,12 @@ import java.util.List;
  */
 public interface IPlaceRepository
 {
-    public List<Place> getPlaces();
-    public Place getPlaceByID(Integer placeID);
+    public static interface OnPlacesReturned
+    {
+        public void onCompletion(List<Place> places);
+        public void onFailed(String reason);
+    }
+
+    public void getPlaces(OnPlacesReturned listener);
+    public Place getPlaceByID(Long placeID);
 }
