@@ -41,12 +41,13 @@ public class PlaceListFragment extends Fragment implements AdapterView.OnItemCli
     }
 
     private void setup() {
-        setupRepository();
+        retreiveRepository();
         setupListView();
     }
 
-    private void setupRepository() {
-        placeRepository = new DummyPlaceRepository();
+    private void retreiveRepository() {
+        CityGuideApplication application = (CityGuideApplication) getActivity().getApplicationContext();
+        placeRepository = application.getPlaceRepository();
     }
 
     private void setupListView() {
@@ -56,7 +57,7 @@ public class PlaceListFragment extends Fragment implements AdapterView.OnItemCli
     }
 
     private void requestForData() {
-        placeRepository.getPlaces(new DummyPlaceRepository.OnPlacesReturned() {
+        placeRepository.getPlaces(new IPlaceRepository.OnPlacesReturned() {
             @Override
             public void onCompletion(List<Place> places) {
                 refreshWithList(places);
