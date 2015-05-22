@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.bearddev.cityguide.model.Place;
+import com.bearddev.cityguide.model.Route;
+import com.bearddev.cityguide.model.RoutePlace;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.j256.ormlite.support.ConnectionSource;
@@ -19,7 +21,9 @@ public class ORMLiteHelper extends OrmLiteSqliteOpenHelper
     private static final String DB_NAME = "city_guide.db";
     private static final int DB_VERSION = 1;
 
-    private RuntimeExceptionDao<Place, Integer> simpleRuntimeDao;
+    private RuntimeExceptionDao<Place, Integer> placeDao;
+    private RuntimeExceptionDao<Route, Integer> routeDao;
+    private RuntimeExceptionDao<RoutePlace, Integer> routePlaceDao;
 
     public ORMLiteHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -33,7 +37,9 @@ public class ORMLiteHelper extends OrmLiteSqliteOpenHelper
             throw new RuntimeException(e);
         }
 
-        DataGenerator.generateEntries(getPlaceDao(), 10);
+        DataGenerator.generatePlaces(this, 10);
+        DataGenerator.generateRoutes(this, 4);
+        DataGenerator.generatePlaceAssociationsForEachRoute(this, 4);
     }
 
     @Override
@@ -47,16 +53,32 @@ public class ORMLiteHelper extends OrmLiteSqliteOpenHelper
     }
 
     public RuntimeExceptionDao<Place, Integer> getPlaceDao() {
-        if (simpleRuntimeDao == null) {
-            simpleRuntimeDao = getRuntimeExceptionDao(Place.class);
+        if (placeDao == null) {
+            placeDao = getRuntimeExceptionDao(Place.class);
         }
 
-        return simpleRuntimeDao;
+        return placeDao;
+    }
+
+    public RuntimeExceptionDao<Route, Integer> getRouteDao() {
+        if (routeDao== null) {
+            routeDao = getRuntimeExceptionDao(Route.class);
+        }
+        return routeDao;
+    }
+
+    public RuntimeExceptionDao<RoutePlace, Integer> getRoutePlaceDao() {
+        if (routePlaceDao == null) {
+            routePlaceDao = getRuntimeExceptionDao(RoutePlace.class);
+        }
+        return routePlaceDao;
     }
 
     @Override
     public void close() {
         super.close();
-        simpleRuntimeDao = null;
+        placeDao = null;
+        routeDao = null;
+        routePlaceDao = null;
     }
 }

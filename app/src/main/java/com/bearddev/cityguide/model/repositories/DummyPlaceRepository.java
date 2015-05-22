@@ -2,6 +2,7 @@ package com.bearddev.cityguide.model.repositories;
 
 import com.bearddev.cityguide.interfaces.IPlaceRepository;
 import com.bearddev.cityguide.model.Place;
+import com.bearddev.cityguide.model.dummy.DummyPlaceGenerator;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.bearddev.cityguide.model.repositories;
+package com.bearddev.cityguide.model.dummy;
 
 import com.bearddev.cityguide.model.Place;
 
