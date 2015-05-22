@@ -3,6 +3,7 @@ package com.bearddev.cityguide;
 import android.app.Application;
 
 import com.bearddev.cityguide.interfaces.IPlaceRepository;
+import com.bearddev.cityguide.model.repositories.DataBaseRepository;
 import com.bearddev.cityguide.model.repositories.DummyPlaceRepository;
 
 /**
@@ -16,7 +17,7 @@ public class CityGuideApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        placeRepository = new DummyPlaceRepository();
+        placeRepository = new DataBaseRepository(this);
     }
 
     public IPlaceRepository getPlaceRepository() {

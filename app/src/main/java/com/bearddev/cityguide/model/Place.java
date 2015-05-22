@@ -9,7 +9,7 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "places")
 public class Place
 {
-    @DatabaseField(id = true)
+    @DatabaseField(generatedId = true)
     private Long id;
 
     @DatabaseField(columnName = "name", canBeNull = false)
@@ -29,6 +29,8 @@ public class Place
 
     @DatabaseField(columnName = "lon")
     private Double longitude;
+
+    public Place () { }
 
     public Place(Long id, String name, String description, String imageURL, Float rating, Double latitude, Double longitude) {
         this.id = id;
